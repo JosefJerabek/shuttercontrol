@@ -1,0 +1,28 @@
+#include "tranzition_map_fill_custom.h"
+
+void tranzitionMapFillCustom(TranzitionMap & tranzitionMap) {   
+    
+    // ST_IDLE
+    tranzitionMap.SetEventTranzition(ST_IDLE, EV_UP_CLICK, ST_OPEN_MAN);
+    tranzitionMap.SetEventTranzition(ST_IDLE, EV_DOWN_CLICK, ST_CLOSE_MAN);
+    
+    // ST_OPEN_MAN
+    tranzitionMap.SetEventTranzition(ST_OPEN_MAN, EV_UP_RELEASE, ST_IDLE);
+    tranzitionMap.SetEventTranzition(ST_OPEN_MAN, EV_UP_PRESS, ST_PULL_UP);
+    
+    // ST_PULL_UP
+    tranzitionMap.SetDurationTranzition(ST_PULL_UP, PULL_UP_TIME_MS, ST_IDLE);
+    tranzitionMap.SetEventTranzition(ST_PULL_UP, EV_DOWN_CLICK, ST_IDLE);
+    
+    // ST_CLOSE_MAN       
+    tranzitionMap.SetEventTranzition(ST_CLOSE_MAN, EV_DOWN_RELEASE, ST_IDLE);
+    tranzitionMap.SetEventTranzition(ST_CLOSE_MAN, EV_DOWN_PRESS, ST_PULL_DN);
+    
+    // ST_PULL_DOWN
+    tranzitionMap.SetDurationTranzition(ST_PULL_DN, PULL_DOWN_TIME_MS, ST_IDLE);
+    tranzitionMap.SetEventTranzition(ST_PULL_DN, EV_UP_CLICK, ST_IDLE);
+    
+#ifndef ARDUINO
+    tranzitionMap.Print();
+#endif
+};

@@ -1,0 +1,16 @@
+
+NASAZENI
+========
+* dopilovat mapu přechodů - zavést všechny potřebné stavy
+
+* do platform PC zavést možnost záznamu co se posílalo na výstup
+
+* v testu porovnat očekávaný výstup s nahraným
+
+
+KOSMETIKA (nice to have)
+=========
+?? nahradit TranzitionMapCustom <- TranzitionMap, kde v kostruktoru naplnim
+
+* posílat události s číslem žaluzie na seriový port
+(zjistit si zda jde při tom používat piny 0 a 1)
