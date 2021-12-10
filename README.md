@@ -84,17 +84,18 @@ Požadovaná úprava:
 (IDLE) --> (OPEN_MAN): UP_CLICK
 (OPEN_MAN) --> (IDLE): UP_RELEASE
 (OPEN_MAN) --> (PULL_UP): UP_PRESS
-(PULL_UP) ..> IDLE: <timeout 60s>
+(PULL_UP) ..> IDLE: active_time > 60s
 (PULL_UP) --> IDLE: DN_CLICK
 
 (IDLE) --> (CLOSE_MAN): DN_CLICK
 (CLOSE_MAN) --> (IDLE): DN_RELEASE
 (CLOSE_MAN) --> (PULL_DN): DN_PRESS
-(PULL_DN) ..> IDLE: <timeout 60s>
+(PULL_DN) ..> IDLE: active_time > 60s
 (PULL_DN) --> IDLE: UP_CLICK
 
 (PULL_DN) --> (PULL_DN_ROT): DN_CLICK
-(PULL_DN_ROT) ..> (ROT_UP): <timeout 58s>
-(ROT_UP) ..> (IDLE): <timeout 500ms>
+(PULL_DN_ROT) ..> (ROT_UP): active_time > 60s
+(PULL_DN_ROT) --> IDLE: UP_CLICK
+(ROT_UP) ..> (IDLE): active_time > 60.5s 
 @enduml
 ```
