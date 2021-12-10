@@ -56,6 +56,45 @@ PATICE 8-13 (6) : piny 8-9: IN_KOUPELNA, piny 10-13: OUT_POKOJ_VYCHOD
 PATICE A0-A5(6) : piny 0-3: OUT_POKOJ_ZAPAD, piny 4-5: OUT_KOUPELNA
 
 
+## Realizovaný stavový automat
 
+OPEN = UP direction
+CLOSE = DOWN direction
 
+```plantuml
+@startuml
+(IDLE) --> (OPEN_MAN): UP_CLICK
+(OPEN_MAN) --> (IDLE): UP_RELEASE
+(OPEN_MAN) --> (PULL_UP): UP_PRESS
+(PULL_UP) ..> IDLE: <timeout 60s>
+(PULL_UP) --> IDLE: DN_CLICK
 
+(IDLE) --> (CLOSE_MAN): DN_CLICK
+(CLOSE_MAN) --> (IDLE): DN_RELEASE
+(CLOSE_MAN) --> (PULL_DN): DN_PRESS
+(PULL_DN) ..> IDLE: <timeout 60s>
+(PULL_DN) --> IDLE: UP_CLICK
+@enduml
+```
+
+Požadovaná úprava:
+
+```plantuml
+@startuml
+(IDLE) --> (OPEN_MAN): UP_CLICK
+(OPEN_MAN) --> (IDLE): UP_RELEASE
+(OPEN_MAN) --> (PULL_UP): UP_PRESS
+(PULL_UP) ..> IDLE: <timeout 60s>
+(PULL_UP) --> IDLE: DN_CLICK
+
+(IDLE) --> (CLOSE_MAN): DN_CLICK
+(CLOSE_MAN) --> (IDLE): DN_RELEASE
+(CLOSE_MAN) --> (PULL_DN): DN_PRESS
+(PULL_DN) ..> IDLE: <timeout 60s>
+(PULL_DN) --> IDLE: UP_CLICK
+
+(PULL_DN) --> (PULL_DN_ROT): DN_CLICK
+(PULL_DN_ROT) ..> (ROT_UP): <timeout 58s>
+(ROT_UP) ..> (IDLE): <timeout 500ms>
+@enduml
+```
