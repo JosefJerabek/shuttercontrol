@@ -15,10 +15,10 @@ public:
 
 	Tranzition();
 
-    StateId NextStates[EV_COUNT];  // uplatni se nezavisle na typu stavu
-    unsigned long DurationMs;      // po jaké době přechod na stav DurationNextState
-                                   // když nula tak k časovému přechodu nedojde
-    StateId DurationNextState;     // novy stav po uplynuti trvani stavu
+    StateId NextStates[EV_COUNT];       // uplatni se nezavisle na typu stavu
+    unsigned long NonIdleDurationMs;    // po jaké době non Idle stavu přechod na stav DurationNextState
+                                        // když nula tak k časovému přechodu nedojde
+    StateId DurationNextState;          // novy stav po uplynuti trvani stavu
 };
 
 #endif

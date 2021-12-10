@@ -16,14 +16,18 @@ public:
 	// Nastaveni prechodu rizeneho udalosti
 	void SetEventTranzition(StateId stateId, EventId eventId, StateId nextStateId);
 
-	// Nastaveni prechodu rizeneho casem
-	void SetDurationTranzition(StateId stateId, unsigned long durationMs, StateId nextState);
+	// Nastaveni prechodu rizeneho casem non IDLE stavu
+	void SetDurationTranzition(
+		StateId stateId,
+		unsigned long nonIdleDurationMs,
+		StateId nextState
+	);
 	
 	// Reakce na udalost
 	StateId GetNextStateEvent(StateId stateId, EventId eventId) const;
 
 	// Reakce na cas
-	StateId GetNextStateOnDuration(StateId stateId, unsigned long durationMs) const;
+	StateId GetNextStateOnDuration(StateId stateId, unsigned long nonIdleDurationMs) const;
 #ifndef ARDUINO
 	void Print();
 #endif

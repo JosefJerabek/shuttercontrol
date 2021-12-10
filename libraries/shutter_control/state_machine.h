@@ -19,15 +19,13 @@ public:
 	StateId GetState();
 
 private:
-
-	//void _UpdateState(EventId event);
     
-    unsigned long _StateDurationMs(unsigned long timeMs);
+    unsigned long _NonIdleDurationMs(unsigned long timeMs);
     
     void _ChangeState(StateId stateId, unsigned long timeMs);
     
     StateId _state;
-    unsigned long _stateSetTimeMs;
+    unsigned long _nonIdleSetTimeMs;  // čas přechodu do jiného než IDLE stavu
     TranzitionMap & _tranzitionMap;
 };
 

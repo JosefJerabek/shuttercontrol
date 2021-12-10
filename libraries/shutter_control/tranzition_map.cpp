@@ -6,10 +6,12 @@ void TranzitionMap::SetEventTranzition(StateId stateId, EventId eventId, StateId
 };
 
 
-void TranzitionMap::SetDurationTranzition(StateId stateId, 
-        unsigned long durationMs, StateId nextState) 
+void TranzitionMap::SetDurationTranzition(
+    StateId stateId,
+    unsigned long nonIdleDurationMs,
+    StateId nextState)
 {
-   	_tranzitions[stateId].DurationMs = durationMs;
+   	_tranzitions[stateId].NonIdleDurationMs = nonIdleDurationMs;
     _tranzitions[stateId].DurationNextState = nextState;
 };
 
@@ -20,10 +22,11 @@ StateId TranzitionMap::GetNextStateEvent(StateId stateId, EventId eventId) const
 
 
 StateId TranzitionMap::GetNextStateOnDuration(StateId stateId, 
-        unsigned long durationMs) const 
+        unsigned long nonIdleDurationMs) const 
 {
     const Tranzition & tranzition = _tranzitions[stateId];
-    if ( (tranzition.DurationMs > 0) &&  (durationMs >= tranzition.DurationMs) ) {
+    if ( (tranzition.NonIdleDurationMs > 0) &&  
+        (nonIdleDurationMs >= tranzition.NonIdleDurationMs) ) {
         return tranzition.DurationNextState;
     }
     else {
