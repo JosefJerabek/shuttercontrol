@@ -5,7 +5,7 @@
 ## Instalace `ubuntu`
 * download latest `arduino ide`
 ** `./install.sh`
-** `./arduino-linux-setup.sh <<username>>`
+** `./arduino-linux-setup.sh <<username>>` - zajištění přístupu na programování
 
 
 ## Různé

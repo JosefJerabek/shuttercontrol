@@ -19,7 +19,7 @@ StateId TranzitionMap::GetNextStateEvent(StateId stateId, EventId eventId) const
 };
 
 
-StateId TranzitionMap::GetNextStateDuration(StateId stateId, 
+StateId TranzitionMap::GetNextStateOnDuration(StateId stateId, 
         unsigned long durationMs) const 
 {
     const Tranzition & tranzition = _tranzitions[stateId];

@@ -23,7 +23,7 @@ public:
 	StateId GetNextStateEvent(StateId stateId, EventId eventId) const;
 
 	// Reakce na cas
-	StateId GetNextStateDuration(StateId stateId, unsigned long durationMs) const;
+	StateId GetNextStateOnDuration(StateId stateId, unsigned long durationMs) const;
 #ifndef ARDUINO
 	void Print();
 #endif

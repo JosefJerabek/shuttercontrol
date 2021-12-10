@@ -31,18 +31,18 @@ void ShutterControl::Setup()
 
 void ShutterControl::Loop()
 {
-    IoState switchIoState = _platform->ReadSwitch();
-  
-    EventId eventId = _twinButton.Loop(_platform->GetTimeMs(), switchIoState);
-
     unsigned int timeMs = _platform->GetTimeMs();
+
+    IoState switchIoState = _platform->ReadSwitch();
+    EventId eventId = _twinButton.Loop(timeMs, switchIoState);
     if (eventId != EV_NONE) {
         _stateMachine.OnEvent(eventId, timeMs);
+    } else {
+        _stateMachine.OnTime(timeMs);
     }
-    _stateMachine.OnTime(timeMs);
-    
-    StateId state = _stateMachine.GetState();
 
+    // helper state output 
+    StateId state = _stateMachine.GetState();
     _platform->WriteState(state);
 
     /*if ( (eventId == EV_UP_CLICK) || (eventId == EV_UP_PRESS)
@@ -64,7 +64,6 @@ void ShutterControl::Loop()
 #endif
     
     IoState out = outputFunction(state);
-    
     _platform->WritePower(out);
     
 };

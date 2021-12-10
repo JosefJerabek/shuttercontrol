@@ -9,9 +9,11 @@ _tranzitionMap(tranzitionMap), _state(initialState), _stateSetTimeMs(0)
 
 
 void StateMachine::OnTime(unsigned long timeMs) {
-    unsigned long duration = _StateDurationMs(timeMs);
-    StateId nextState = _tranzitionMap.GetNextStateDuration(_state, duration);
-    _ChangeState(nextState, timeMs);
+    unsigned long stateDuration = _StateDurationMs(timeMs);
+    StateId nextState = _tranzitionMap.GetNextStateOnDuration(_state, stateDuration);
+    if (nextState != _state) {
+        _ChangeState(nextState, timeMs);
+    }
 };
 
 
@@ -22,7 +24,9 @@ void StateMachine::OnEvent(EventId eventId, unsigned long timeMs) {
     }
 
     StateId nextState = _tranzitionMap.GetNextStateEvent(_state, eventId);
-    _ChangeState(nextState, timeMs);
+    if (nextState != _state) {
+        _ChangeState(nextState, timeMs);
+    }
 };
 
 
