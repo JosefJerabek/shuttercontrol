@@ -33,11 +33,11 @@ EventId TwinButton::Loop(unsigned long timeMs, IoState ioState)
     
     switch (eventDown) {
         case Button::BT_EV_CLICK:
-            return EV_DOWN_CLICK;
+            return EV_DN_CLICK;
         case Button::BT_EV_PRESS:
-            return EV_DOWN_PRESS;
+            return EV_DN_PRESS;
         case Button::BT_EV_RELEASE:
-            return EV_DOWN_RELEASE;
+            return EV_DN_RELEASE;
         case Button::BT_EV_NONE:
             break;
     };

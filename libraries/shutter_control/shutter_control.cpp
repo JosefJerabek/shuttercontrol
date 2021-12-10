@@ -48,8 +48,8 @@ void ShutterControl::Loop()
     /*if ( (eventId == EV_UP_CLICK) || (eventId == EV_UP_PRESS)
             || (eventId == EV_UP_RELEASE) ) {
         _platform->WriteEvent(2);
-    } else if ( (eventId == EV_DOWN_CLICK) || (eventId == EV_DOWN_PRESS)
-            || (eventId == EV_DOWN_RELEASE) ) {
+    } else if ( (eventId == EV_DN_CLICK) || (eventId == EV_DN_PRESS)
+            || (eventId == EV_DN_RELEASE) ) {
         _platform->WriteEvent(1);
     } else {
         _platform->WriteEvent(0);

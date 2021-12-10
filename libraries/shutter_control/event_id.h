@@ -7,9 +7,9 @@ enum EventId {
     EV_UP_CLICK = 0,  // stisk tlacitka nahoru
     EV_UP_PRESS,      // drzeni tlacitka - dlouhy stisk tlacitka
     EV_UP_RELEASE,    // uvolneni tlacitka dolu
-    EV_DOWN_CLICK,
-    EV_DOWN_PRESS,    // drzeni tlacitka dolu
-    EV_DOWN_RELEASE,
+    EV_DN_CLICK,
+    EV_DN_PRESS,    // drzeni tlacitka dolu
+    EV_DN_RELEASE,
     EV_COUNT,         // pocet udalosti
     EV_NONE = -1      // zadna udalost
 };

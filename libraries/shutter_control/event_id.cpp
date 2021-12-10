@@ -13,12 +13,12 @@ std::string GetEventName(EventId eventId)
             return("EV_UP_PRESS");
         case EV_UP_RELEASE:
             return("EV_UP_RELEASE");
-        case EV_DOWN_CLICK:
-            return("EV_DOWN_CLICK");
-        case EV_DOWN_PRESS:
-            return("EV_DOWN_PRESS");
-        case EV_DOWN_RELEASE:
-            return("EV_DOWN_RELEASE");
+        case EV_DN_CLICK:
+            return("EV_DN_CLICK");
+        case EV_DN_PRESS:
+            return("EV_DN_PRESS");
+        case EV_DN_RELEASE:
+            return("EV_DN_RELEASE");
         case EV_COUNT:
             return("EV_COUNT");
         case EV_NONE:
