@@ -4,6 +4,7 @@
 
 const unsigned int LoopDelayMs = 10;
 const int PressedTimeoutMs = 1200; // za jak dlouho od stisku udalost PRESSED
+const unsigned long PullTimeMs = 60000; // za jak dlouho sjede / vyjede žaluzie 
 
 // Obyvak leve jizni okno
 PlatformIf::Pinout zapojeniObyvakVlevo(
@@ -42,15 +43,15 @@ PlatformArduino * platformObyvakTerasa = new PlatformArduino(zapojeniObyvakTeras
 PlatformArduino * platformPracovna = new PlatformArduino(zapojeniPracovna);
 
     
-ShutterControl zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs);
-ShutterControl zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs);
-ShutterControl zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs);
-ShutterControl zaluziePracovna(platformPracovna, PressedTimeoutMs);
+ShutterControl zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs);
+ShutterControl zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs, PullTimeMs);
+ShutterControl zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs);
+ShutterControl zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs);
 
 
 void setup() {
 
-  	zaluzieObyvakVlevo.Setup();
+  zaluzieObyvakVlevo.Setup();
 	zaluzieObyvakVpravo.Setup();
 	zaluzieObyvakTerasa.Setup();
 	zaluziePracovna.Setup();
@@ -60,7 +61,7 @@ void setup() {
 
 void loop() {
 
-  	zaluzieObyvakVlevo.Loop();
+  zaluzieObyvakVlevo.Loop();
 	zaluzieObyvakVpravo.Loop();
 	zaluzieObyvakTerasa.Loop();
 	zaluziePracovna.Loop();

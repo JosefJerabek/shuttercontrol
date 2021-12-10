@@ -4,9 +4,10 @@
 #include "tranzition_map.h"
 
 
-#define PULL_UP_TIME_MS   60000  // [ms] cas na vytazeni
-#define PULL_DOWN_TIME_MS 60000  // [ms] cas na stazeni zaluzii
-
-void tranzitionMapFillCustom(TranzitionMap & tranzitionMap);
+void tranzitionMapFillCustom(
+    TranzitionMap & tranzitionMap,
+    unsigned long pullTimeMs//,  // čas na sjetí / vyjetí
+    //unsigned long openTimeMs     // čas na pootevření po sjetí dolů
+);
 
 #endif

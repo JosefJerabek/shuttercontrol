@@ -1,0 +1,4 @@
+* DONE Dokreslit v MD mapu přechodů.
+* DONE Předělat trvání stavu na trvání "nonIdleTime"
+* DONE vytáhnout konstaty času jízdy nahoru (ideálně úplně)
+* Přidat stav PULL_DOWN_NEXT_ROT + NEXT_ROT_UP.

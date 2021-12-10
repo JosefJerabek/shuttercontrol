@@ -13,8 +13,9 @@ IoState outputFunction(StateId state) {
         return IO_NONE;
 };
 
-ShutterControl::ShutterControl(PlatformIf * platform, int pressedTimeout)
+ShutterControl::ShutterControl(PlatformIf * platform, int pressedTimeout, unsigned long pullTimeMs)
 :
+_pullTimeMs(pullTimeMs),
 _stateMachine(_tranzitionMap, ST_IDLE),
 _platform(platform),
 _twinButton(pressedTimeout)       
@@ -25,7 +26,7 @@ _twinButton(pressedTimeout)
 void ShutterControl::Setup()
 {
     _platform->Setup();   
-     tranzitionMapFillCustom(_tranzitionMap);  
+     tranzitionMapFillCustom(_tranzitionMap, _pullTimeMs);
 };
 
 

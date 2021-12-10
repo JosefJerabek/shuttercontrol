@@ -14,13 +14,15 @@ class ShutterControl
 {
 public:
 
-    ShutterControl(PlatformIf * platform, int pressedTimeout);
+    ShutterControl(PlatformIf * platform, int pressedTimeout, unsigned long pullTimeMs);
 
     void Setup();
     
     void Loop();
 
 private:
+    unsigned long _pullTimeMs;
+
     PlatformIf * _platform;
     TwinButton _twinButton;
     StateMachine _stateMachine;
