@@ -2,8 +2,8 @@
 
 void tranzitionMapFillCustom(
     TranzitionMap & tranzitionMap,
-    unsigned long pullTimeMs//,
-    //unsigned long openTimeMs
+    unsigned long pullTimeMs,
+    unsigned long openTimeMs
 ) {   
     
     // ST_IDLE
@@ -25,7 +25,15 @@ void tranzitionMapFillCustom(
     
     // ST_PULL_DOWN
     tranzitionMap.SetDurationTranzition(ST_PULL_DN, pullTimeMs, ST_IDLE);
+    tranzitionMap.SetEventTranzition(ST_PULL_DN, EV_DN_CLICK, ST_PULL_DN_TO_OPEN);
     tranzitionMap.SetEventTranzition(ST_PULL_DN, EV_UP_CLICK, ST_IDLE);
+    
+    // ST_PULL_DN_TO_OPEN   // uplne sjet dolu a nasledne otevrit
+    tranzitionMap.SetDurationTranzition(ST_PULL_DN_TO_OPEN, pullTimeMs, ST_PULL_DN_OPEN);
+    tranzitionMap.SetEventTranzition(ST_PULL_DN_TO_OPEN, EV_UP_CLICK, ST_IDLE);
+
+    // ST_PULL_DN_OPEN      // otevreni po sjeti dolu
+    tranzitionMap.SetDurationTranzition(ST_PULL_DN_OPEN, pullTimeMs + openTimeMs, ST_IDLE);
     
 #ifndef ARDUINO
     tranzitionMap.Print();

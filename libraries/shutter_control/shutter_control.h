@@ -14,7 +14,15 @@ class ShutterControl
 {
 public:
 
-    ShutterControl(PlatformIf * platform, int pressedTimeout, unsigned long pullTimeMs);
+    // @param pressedTimeoutMs - [ms] doba stisku tlačítka pro klasifikaci jako "držení"
+    // @param pullTimeMs - [ms] doba potřebná na sjetí / vytažení žaluzií
+    // @param openTimeMs - [ms] doba potřebná na pootevření žaluzie poté co sjela dolů
+    ShutterControl(
+        PlatformIf * platform,
+        int pressedTimeoutMs,
+        unsigned long pullTimeMs,
+        unsigned long openTimeMs
+    );
 
     void Setup();
     
@@ -22,6 +30,7 @@ public:
 
 private:
     unsigned long _pullTimeMs;
+    unsigned long _openTimeMs;
 
     PlatformIf * _platform;
     TwinButton _twinButton;

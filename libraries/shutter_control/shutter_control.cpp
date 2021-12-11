@@ -4,21 +4,27 @@
 #include "io_state_name.h"
 
 IoState outputFunction(StateId state) {
-	if ( (state == ST_OPEN_MAN) || (state == ST_PULL_UP) ) {
+	if (state == ST_OPEN_MAN || state == ST_PULL_UP || state == ST_PULL_DN_OPEN) {
 		return IO_UP;
 	}
-	else if ( (state == ST_CLOSE_MAN) || (state == ST_PULL_DN) ) {
+	else if (state == ST_CLOSE_MAN || state == ST_PULL_DN || state == ST_PULL_DN_TO_OPEN) {
 		return IO_DOWN;
 	}	
-        return IO_NONE;
+    return IO_NONE;
 };
 
-ShutterControl::ShutterControl(PlatformIf * platform, int pressedTimeout, unsigned long pullTimeMs)
+ShutterControl::ShutterControl(
+    PlatformIf * platform,
+    int pressedTimeoutMs,
+    unsigned long pullTimeMs,
+    unsigned long openTimeMs
+)
 :
 _pullTimeMs(pullTimeMs),
+_openTimeMs(openTimeMs),
 _stateMachine(_tranzitionMap, ST_IDLE),
 _platform(platform),
-_twinButton(pressedTimeout)       
+_twinButton(pressedTimeoutMs)
 {   
 }
 
@@ -26,7 +32,7 @@ _twinButton(pressedTimeout)
 void ShutterControl::Setup()
 {
     _platform->Setup();   
-     tranzitionMapFillCustom(_tranzitionMap, _pullTimeMs);
+     tranzitionMapFillCustom(_tranzitionMap, _pullTimeMs, _openTimeMs);
 };
 
 

@@ -93,9 +93,9 @@ Požadovaná úprava:
 (PULL_DN) ..> IDLE: active_time > 60s
 (PULL_DN) --> IDLE: UP_CLICK
 
-(PULL_DN) --> (PULL_DN_ROT): DN_CLICK
-(PULL_DN_ROT) ..> (ROT_UP): active_time > 60s
-(PULL_DN_ROT) --> IDLE: UP_CLICK
-(ROT_UP) ..> (IDLE): active_time > 60.5s 
+(PULL_DN) --> (PULL_DN_TO_OPEN): DN_CLICK
+(PULL_DN_TO_OPEN) ..> (PULL_DN_OPEN): active_time > 60s
+(PULL_DN_TO_OPEN) --> IDLE: UP_CLICK
+(PULL_DN_OPEN) ..> (IDLE): active_time > 60.5s 
 @enduml
 ```

@@ -2,9 +2,11 @@
 #include <platform_arduino.h>
 #include <bus_pins_uno.h>
 
+const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRESSED
+const unsigned long PullTimeMs = 5000;   // za jak dlouho sjede / vyjede žaluzie 
+const unsigned long OpenTimeMs =  500;   // potřebný čas na pootevření žaluzie sjeté dolů
+
 const unsigned int LoopDelayMs = 10;
-const int PressedTimeoutMs = 1200; // za jak dlouho od stisku udalost PRESSED
-const unsigned long PullTimeMs = 60000; // za jak dlouho sjede / vyjede žaluzie 
 
 // Obyvak leve jizni okno
 PlatformIf::Pinout zapojeniObyvakVlevo(
@@ -43,10 +45,10 @@ PlatformArduino * platformObyvakTerasa = new PlatformArduino(zapojeniObyvakTeras
 PlatformArduino * platformPracovna = new PlatformArduino(zapojeniPracovna);
 
     
-ShutterControl zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs);
+ShutterControl zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
+ShutterControl zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
+ShutterControl zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
+ShutterControl zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
 
 
 void setup() {
