@@ -2,3 +2,7 @@
 * DONE Předělat trvání stavu na trvání "nonIdleTime"
 * DONE vytáhnout konstaty času jízdy nahoru (ideálně úplně)
 * DONE Přidat stav PULL_DOWN_NEXT_ROT + NEXT_ROT_UP.
+* odladit správné časy
+* nasazení + TAG + changelog
+* refaktoring před dalším krokem
+* funkce spřažení žaluzíí dohromady
