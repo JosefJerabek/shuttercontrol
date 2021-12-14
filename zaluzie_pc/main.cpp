@@ -1,4 +1,4 @@
-#include "../libraries/shutter_control/shutter_control.h"
+#include "../libraries/shutter_control/shutter_unit.h"
 #include "../libraries/shutter_control/platform_pc.h"
 
 #include "../libraries/shutter_control/global.h"
@@ -64,7 +64,7 @@ int main() {
     
     PlatformPc * platform = new PlatformPc(pinout, inputSwitching);
         
-    ShutterControl shutterControl(platform, PRESSED_TIMEOUT_MS);
+    ShutterUnit shutterControl(platform, PRESSED_TIMEOUT_MS);
  
     shutterControl.Setup();
     

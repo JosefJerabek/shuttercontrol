@@ -10,14 +10,14 @@
 #include "state_machine.h"
 #include "tranzition_map.h"
 
-class ShutterControl
+class ShutterUnit
 {
 public:
 
     // @param pressedTimeoutMs - [ms] doba stisku tlačítka pro klasifikaci jako "držení"
     // @param pullTimeMs - [ms] doba potřebná na sjetí / vytažení žaluzií
     // @param openTimeMs - [ms] doba potřebná na pootevření žaluzie poté co sjela dolů
-    ShutterControl(
+    ShutterUnit(
         PlatformIf * platform,
         int pressedTimeoutMs,
         unsigned long pullTimeMs,

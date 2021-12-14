@@ -1,4 +1,4 @@
-#include <shutter_control.h>
+#include <shutter_unit.h>
 #include <platform_arduino.h>
 #include <bus_pins_uno.h>
 
@@ -52,11 +52,11 @@ PlatformArduino * platformPokojPravyJih = new PlatformArduino(zapojeniPokojPravy
 PlatformArduino * platformPokojPravyZapad = new PlatformArduino(zapojeniPokojPravyZapad); 
 PlatformArduino * platformKoupelna = new PlatformArduino(zapojeniKoupelna);
 
-ShutterControl zaluziePokojLevyVychod(platformPokojLevyVychod, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluziePokojLevyJih(platformPokojLevyJih, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluziePokojPravyJih(platformPokojPravyJih, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluziePokojPravyZapad(platformPokojPravyZapad, PressedTimeoutMs, PullTimeMs);
-ShutterControl zaluzieKoupelna(platformKoupelna, PressedTimeoutMs, PullTimeMs);
+ShutterUnit zaluziePokojLevyVychod(platformPokojLevyVychod, PressedTimeoutMs, PullTimeMs);
+ShutterUnit zaluziePokojLevyJih(platformPokojLevyJih, PressedTimeoutMs, PullTimeMs);
+ShutterUnit zaluziePokojPravyJih(platformPokojPravyJih, PressedTimeoutMs, PullTimeMs);
+ShutterUnit zaluziePokojPravyZapad(platformPokojPravyZapad, PressedTimeoutMs, PullTimeMs);
+ShutterUnit zaluzieKoupelna(platformKoupelna, PressedTimeoutMs, PullTimeMs);
 
 void setup() {
 

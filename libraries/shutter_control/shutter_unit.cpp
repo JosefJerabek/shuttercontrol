@@ -1,4 +1,4 @@
-#include "shutter_control.h"
+#include "shutter_unit.h"
 
 #include "tranzition_map_fill_custom.h"
 #include "io_state_name.h"
@@ -13,7 +13,7 @@ IoState outputFunction(StateId state) {
     return IO_NONE;
 };
 
-ShutterControl::ShutterControl(
+ShutterUnit::ShutterUnit(
     PlatformIf * platform,
     int pressedTimeoutMs,
     unsigned long pullTimeMs,
@@ -29,14 +29,14 @@ _twinButton(pressedTimeoutMs)
 }
 
 
-void ShutterControl::Setup()
+void ShutterUnit::Setup()
 {
     _platform->Setup();   
      tranzitionMapFillCustom(_tranzitionMap, _pullTimeMs, _openTimeMs);
 };
 
 
-void ShutterControl::Loop()
+void ShutterUnit::Loop()
 {
     unsigned int timeMs = _platform->GetTimeMs();
 
