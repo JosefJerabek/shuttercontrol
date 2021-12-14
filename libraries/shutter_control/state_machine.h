@@ -32,6 +32,9 @@ private:
     StateId _state;
     unsigned long _nonIdleSetTimeMs;  // čas přechodu do jiného než IDLE stavu
     TranzitionMap & _tranzitionMap;
+
+    // unsigned int _debugLastPrintedTime;
+    // unsigned int _debugLastPrintedDuration;
 };
 
 #endif
