@@ -39,7 +39,7 @@ void ShutterUnit::Setup()
 
 void ShutterUnit::Loop()
 {
-    unsigned int timeMs = _platform->GetTimeMs();
+    unsigned long timeMs = _platform->GetTimeMs();
 
     IoState switchIoState = _platform->ReadSwitch();
     EventId eventId = _twinButton.Loop(timeMs, switchIoState);
