@@ -5,16 +5,6 @@
 const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRESSED
 const unsigned long PullTimeMs = 60000;  // za jak dlouho sjede / vyjede žaluzie 
 const unsigned long OpenTimeMs =   500;  // potřebný čas na pootevření žaluzie sjeté dolů
-// 5/3  OK
-// 5/30 OK
-// 30/5 OK - 3x otestovano
-// 20/3 zlobí
-// UP, DOWN, DOWN+, DOWN_OPEN
-// 20, 20, 20, 23
-//
-
-
-const unsigned int LoopDelayMs = 10;
 
 // Obyvak leve jizni okno
 PlatformIf::Pinout zapojeniObyvakVlevo(
@@ -47,36 +37,35 @@ PlatformIf::Pinout zapojeniPracovna(
 	BusDigital10Pin::D09
 );
 
-//PlatformArduino * platformObyvakVlevo = new PlatformArduino(zapojeniObyvakVlevo);
+PlatformArduino * platformObyvakVlevo = new PlatformArduino(zapojeniObyvakVlevo);
 PlatformArduino * platformObyvakVpravo = new PlatformArduino(zapojeniObyvakVpravo);
-//PlatformArduino * platformObyvakTerasa = new PlatformArduino(zapojeniObyvakTerasa);
-//PlatformArduino * platformPracovna = new PlatformArduino(zapojeniPracovna);
+PlatformArduino * platformObyvakTerasa = new PlatformArduino(zapojeniObyvakTerasa);
+PlatformArduino * platformPracovna = new PlatformArduino(zapojeniPracovna);
 
     
-//ShutterUnit zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 0);
+ShutterUnit zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 0);
 ShutterUnit zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 1);
-//ShutterUnit zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 2);
-//ShutterUnit zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 3);
+ShutterUnit zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 2);
+ShutterUnit zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 3);
 
 
 void setup() {
 
-        Serial.begin(9600);
+    // POZOR: jen pro debug -> zapisuje do vstupů prvni zaluzie
+    // Serial.begin(9600);  // debug prints inside
         
-  	//zaluzieObyvakVlevo.Setup();
+  	zaluzieObyvakVlevo.Setup();
 	zaluzieObyvakVpravo.Setup();
-	//zaluzieObyvakTerasa.Setup();
-	//zaluziePracovna.Setup();
+	zaluzieObyvakTerasa.Setup();
+	zaluziePracovna.Setup();
 
 }
 
 
 void loop() {
 
-	//zaluzieObyvakVlevo.Loop();
+	zaluzieObyvakVlevo.Loop();
 	zaluzieObyvakVpravo.Loop();
-	//zaluzieObyvakTerasa.Loop();
-	//zaluziePracovna.Loop();
-
-	//delay(LoopDelayMs);
+	zaluzieObyvakTerasa.Loop();
+	zaluziePracovna.Loop();
 }
