@@ -21,7 +21,8 @@ public:
         PlatformIf * platform,
         int pressedTimeoutMs,
         unsigned long pullTimeMs,
-        unsigned long openTimeMs
+        unsigned long openTimeMs,
+        unsigned char id
     );
 
     void Setup();

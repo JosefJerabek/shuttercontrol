@@ -17,12 +17,13 @@ ShutterUnit::ShutterUnit(
     PlatformIf * platform,
     int pressedTimeoutMs,
     unsigned long pullTimeMs,
-    unsigned long openTimeMs
+    unsigned long openTimeMs,
+    unsigned char id
 )
 :
 _pullTimeMs(pullTimeMs),
 _openTimeMs(openTimeMs),
-_stateMachine(_tranzitionMap, ST_IDLE),
+_stateMachine(_tranzitionMap, ST_IDLE, id),
 _platform(platform),
 _twinButton(pressedTimeoutMs)
 {   

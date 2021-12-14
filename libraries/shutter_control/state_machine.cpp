@@ -1,9 +1,14 @@
+#include <Arduino.h>
+
 #include "state_machine.h"
 #include "tranzition_map.h"
 
 
-StateMachine::StateMachine(TranzitionMap & tranzitionMap, StateId initialState) : 
-_tranzitionMap(tranzitionMap), _state(initialState), _nonIdleSetTimeMs(0)
+StateMachine::StateMachine(TranzitionMap & tranzitionMap, StateId initialState, unsigned char id) : 
+_id(id),
+_tranzitionMap(tranzitionMap), 
+_state(initialState), 
+_nonIdleSetTimeMs(0)
 {
 };
 
@@ -18,7 +23,7 @@ void StateMachine::OnTime(unsigned long timeMs) {
 
 
 void StateMachine::OnEvent(EventId eventId, unsigned long timeMs) {
-   // zde cely stavovy automat
+    // zde cely stavovy automat
     if (eventId == EV_NONE) {        
         return;
     }
@@ -51,6 +56,13 @@ void StateMachine::_ChangeState(StateId newState, unsigned long timeMs) {
         if (_state == ST_IDLE && newState != ST_IDLE) {
             _nonIdleSetTimeMs = timeMs;
         }
+#ifdef ARDUINO
+        Serial.print(_id);
+        Serial.print(": ");
+        Serial.print(_state);
+        Serial.print("->");
+        Serial.println(newState);
+#endif
         _state = newState;
     }
 }

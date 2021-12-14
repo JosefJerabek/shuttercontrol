@@ -3,16 +3,15 @@
 #include <bus_pins_uno.h>
 
 const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRESSED
-const unsigned long PullTimeMs = 20000;   // za jak dlouho sjede / vyjede žaluzie 
-const unsigned long OpenTimeMs =  3000;   // potřebný čas na pootevření žaluzie sjeté dolů
+const unsigned long PullTimeMs = 60000;  // za jak dlouho sjede / vyjede žaluzie 
+const unsigned long OpenTimeMs =   500;  // potřebný čas na pootevření žaluzie sjeté dolů
 // 5/3  OK
 // 5/30 OK
 // 30/5 OK - 3x otestovano
 // 20/3 zlobí
 // UP, DOWN, DOWN+, DOWN_OPEN
 // 20, 20, 20, 23
-
-
+//
 
 
 const unsigned int LoopDelayMs = 10;
@@ -48,34 +47,36 @@ PlatformIf::Pinout zapojeniPracovna(
 	BusDigital10Pin::D09
 );
 
-PlatformArduino * platformObyvakVlevo = new PlatformArduino(zapojeniObyvakVlevo);
+//PlatformArduino * platformObyvakVlevo = new PlatformArduino(zapojeniObyvakVlevo);
 PlatformArduino * platformObyvakVpravo = new PlatformArduino(zapojeniObyvakVpravo);
-PlatformArduino * platformObyvakTerasa = new PlatformArduino(zapojeniObyvakTerasa);
-PlatformArduino * platformPracovna = new PlatformArduino(zapojeniPracovna);
+//PlatformArduino * platformObyvakTerasa = new PlatformArduino(zapojeniObyvakTerasa);
+//PlatformArduino * platformPracovna = new PlatformArduino(zapojeniPracovna);
 
     
-ShutterUnit zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
-ShutterUnit zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
-ShutterUnit zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
-ShutterUnit zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs, OpenTimeMs);
+//ShutterUnit zaluzieObyvakVlevo(platformObyvakVlevo, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 0);
+ShutterUnit zaluzieObyvakVpravo(platformObyvakVpravo, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 1);
+//ShutterUnit zaluzieObyvakTerasa(platformObyvakTerasa, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 2);
+//ShutterUnit zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 3);
 
 
 void setup() {
 
-  	zaluzieObyvakVlevo.Setup();
+        Serial.begin(9600);
+        
+  	//zaluzieObyvakVlevo.Setup();
 	zaluzieObyvakVpravo.Setup();
-	zaluzieObyvakTerasa.Setup();
-	zaluziePracovna.Setup();
+	//zaluzieObyvakTerasa.Setup();
+	//zaluziePracovna.Setup();
 
 }
 
 
 void loop() {
 
-	zaluzieObyvakVlevo.Loop();
+	//zaluzieObyvakVlevo.Loop();
 	zaluzieObyvakVpravo.Loop();
-	zaluzieObyvakTerasa.Loop();
-	zaluziePracovna.Loop();
+	//zaluzieObyvakTerasa.Loop();
+	//zaluziePracovna.Loop();
 
 	//delay(LoopDelayMs);
 }
