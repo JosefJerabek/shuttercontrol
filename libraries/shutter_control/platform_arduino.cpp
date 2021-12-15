@@ -31,6 +31,7 @@ unsigned long PlatformArduino::GetTimeMs() {
 #ifdef ARDUINO
     return millis();
 #endif
+    return 0; // TODO
 };
 
 

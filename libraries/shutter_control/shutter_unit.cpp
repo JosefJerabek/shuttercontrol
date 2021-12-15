@@ -65,7 +65,7 @@ void ShutterUnit::Loop()
     
 #ifndef ARDUINO
     printf("time=%06d switch=%s event=%s new_stateid=%s\n", 
-            timeMs,
+            (unsigned int) timeMs,
             GetIoStateName(switchIoState).c_str(), 
             GetEventName(eventId).c_str(),
             GetStateName(state).c_str());

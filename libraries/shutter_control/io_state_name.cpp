@@ -14,6 +14,7 @@ std::string GetIoStateName(IoState ioState)
         case IO_BOTH:
             return("IO_BOTH");
     };
+    return("IO_NONE");
 };
 
 #endif

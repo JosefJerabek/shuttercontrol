@@ -24,6 +24,7 @@ std::string GetStateName(StateId stateId)
         case ST_NONE:
             return ("ST_NONE");                    
     }
+    return ("ST_NONE");                    
 };
 
 #endif

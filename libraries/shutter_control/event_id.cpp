@@ -24,6 +24,7 @@ std::string GetEventName(EventId eventId)
         case EV_NONE:
             return("EV_NONE");
     }
+    return("EV_NONE");
 };
 
 #endif
