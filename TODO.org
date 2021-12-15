@@ -3,6 +3,15 @@
 * DONE vytáhnout konstaty času jízdy nahoru (ideálně úplně)
 * DONE Přidat stav PULL_DOWN_NEXT_ROT + NEXT_ROT_UP.
 * DONE odladit správné časy
-* TODO nasazení + TAG + changelog
+* TODO Úklidový refaktoring před vydáním
+** update README.md
+** přidat CHANGELOG.md
+** zrušit `global.h`
+** platform_if - možná nanic a řešitelné pouze přes #define ARDUINO - prověřit
+* TODO nasazení + TAG
 * refaktoring před dalším krokem
+** state_machine - do jednoho adresáře s tím co potřebuje - stavy
+** plnění mapy přechodů - blíže uživateli
+** výstupní funkce (na co má dopad který stav) blíže k uživateli
+* rozběhnutí a překlad PC
 * funkce spřažení žaluzíí dohromady
