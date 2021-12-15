@@ -43,21 +43,3 @@ void PlatformIf::WritePower(IoState state){
     _WritePin(_pinout.PowerUpPin, up);
     _WritePin(_pinout.PowerDownPin, down);
 };
-
-
-void PlatformIf::WriteState(int state){
-  int bit0 = state & 0x1;
-  int bit1 = state & 0x2;
-  int bit2 = state & 0x4;
-  _WritePin(_pinout.StatePin0, bit0);
-  _WritePin(_pinout.StatePin1, bit1);
-  _WritePin(_pinout.StatePin2, bit2);
-};
-
-
-void PlatformIf::WriteEvent(int state){
-  int bit0 = state & 0x1;
-  int bit1 = state & 0x2;
-  _WritePin(_pinout.EventPin0, bit0);
-  _WritePin(_pinout.EventPin1, bit1);
-};

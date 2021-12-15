@@ -5,7 +5,6 @@
 // Realize input-output layer - prowide hardware / platform abstraction 
 // * reading switch state
 // * switching power
-// * writing state number
 // * reading time
 // * Input logic: Pouzit PULL_UP rezistor, spinano nulou.
 

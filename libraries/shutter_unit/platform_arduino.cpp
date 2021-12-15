@@ -18,11 +18,6 @@ void PlatformArduino::Setup()
   _SetupPin(_pinout.SwitchDownPin, INPUT_PULLUP);
   _SetupPin(_pinout.PowerUpPin, OUTPUT);
   _SetupPin(_pinout.PowerDownPin, OUTPUT);
-  _SetupPin(_pinout.StatePin0, OUTPUT);
-  _SetupPin(_pinout.StatePin1, OUTPUT);
-  _SetupPin(_pinout.StatePin2, OUTPUT);
-  _SetupPin(_pinout.EventPin0, OUTPUT);
-  _SetupPin(_pinout.EventPin1, OUTPUT);
 #endif
 };
 

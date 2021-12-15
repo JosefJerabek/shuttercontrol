@@ -22,28 +22,16 @@ public:
         int SwitchDownPin;
         int PowerUpPin;
         int PowerDownPin; 
-        int StatePin0;
-        int StatePin1;
-        int StatePin2;
-        int EventPin0;
-        int EventPin1;
 
         Pinout(
             int switchUpPin, int switchDownPin, 
-            int powerUpPin, int powerDownPin, 
-            int statePin0 = -1, int statePin1 = -1, int statePin2 = -1,
-            int eventPin0 = -1, int eventPin1 = -1
+            int powerUpPin, int powerDownPin
         ) 
         : 
         SwitchUpPin(switchUpPin), SwitchDownPin(switchDownPin),
-        PowerUpPin(powerUpPin), PowerDownPin(powerDownPin),
-        StatePin0(statePin0), StatePin1(statePin1), StatePin2(statePin2),
-        EventPin0(eventPin0), EventPin1(eventPin1)
+        PowerUpPin(powerUpPin), PowerDownPin(powerDownPin)
         {
         };
-
-        //Pinout(){};
-
     };
     
     PlatformIf(PlatformIf::Pinout pinout);
@@ -54,16 +42,9 @@ public:
     
     void WritePower(IoState state);
     
-    // pomocná
-    void WriteState(int state);
-    
-    // pomocná
-    void WriteEvent(int event);
-
     virtual unsigned long GetTimeMs() = 0;
 
 protected:
-    // zapouzdreni pro pripad, ze pin nenastaven (-1)
     virtual void _SetupPin(int number, int type) = 0;
     virtual void _WritePin(int number, int value) = 0;
     virtual int _ReadPin(int number) = 0;

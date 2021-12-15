@@ -49,21 +49,8 @@ void ShutterUnit::Loop()
         _stateMachine.OnTime(timeMs);
     }
 
-    // helper state output 
+#ifndef ARDUINO // NOTE: state can be printed out also in StateMachine
     StateId state = _stateMachine.GetState();
-    _platform->WriteState(state);
-
-    /*if ( (eventId == EV_UP_CLICK) || (eventId == EV_UP_PRESS)
-            || (eventId == EV_UP_RELEASE) ) {
-        _platform->WriteEvent(2);
-    } else if ( (eventId == EV_DN_CLICK) || (eventId == EV_DN_PRESS)
-            || (eventId == EV_DN_RELEASE) ) {
-        _platform->WriteEvent(1);
-    } else {
-        _platform->WriteEvent(0);
-    }*/
-    
-#ifndef ARDUINO
     printf("time=%06d switch=%s event=%s new_stateid=%s\n", 
             (unsigned int) timeMs,
             GetIoStateName(switchIoState).c_str(), 
