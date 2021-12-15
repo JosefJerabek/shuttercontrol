@@ -1,42 +1,55 @@
+#ifdef ARDUINO
 #include <Arduino.h>
+#else
+#include <iostream>
+#endif
 
 #include "state_machine.h"
 #include "tranzition_map.h"
+
 
 
 StateMachine::StateMachine(TranzitionMap & tranzitionMap, StateId initialState, unsigned char id) : 
 _id(id),
 _tranzitionMap(tranzitionMap), 
 _state(initialState), 
-_nonIdleSetTimeMs(0),
-// _debugLastPrintedTime(0),
-// _debugLastPrintedDuration(0)
+_nonIdleSetTimeMs(0)
+#ifdef DEBUG_STATE_MACHINE
+,_debugLastPrintedTime(0)
+,_debugLastPrintedDuration(0)
+#endif
 {
 };
 
 
 void StateMachine::OnTime(unsigned long timeMs) {
     unsigned long nonIdleDurationMs = _NonIdleDurationMs(timeMs);
-// #ifdef ARDUINO
-//     unsigned int time = (unsigned int) timeMs / 1000;
-//     if (_debugLastPrintedTime != time) {
-//         Serial.print("SM");  
-//         Serial.print(_id);
-//         Serial.print(": ");
-//         Serial.print("time: ");
-//         Serial.println(time);
-//         _debugLastPrintedTime = time;
-//     }    
-//     unsigned int duration = (unsigned int) nonIdleDurationMs / 1000;
-//     if (_debugLastPrintedDuration != duration) {
-//         Serial.print("SM");  
-//         Serial.print(_id);
-//         Serial.print(": ");
-//         Serial.print("duration: ");
-//         Serial.println(duration);
-//         _debugLastPrintedDuration = duration;
-//     }    
-// #endif
+#ifdef DEBUG_STATE_MACHINE
+    unsigned int time = (unsigned int) timeMs / 1000;
+    if (_debugLastPrintedTime != time) {
+    #ifdef ARDUINO
+        Serial.print("SM");  
+        Serial.print(_id);
+        Serial.print(": time: ");
+        Serial.println(time);
+    #else
+        std::cout << "SM" << _id << ": time: " << time << std::endl; 
+    #endif
+        _debugLastPrintedTime = time;
+    }    
+    unsigned int duration = (unsigned int) nonIdleDurationMs / 1000;
+    if (_debugLastPrintedDuration != duration) {
+    #ifdef ARDUINO
+        Serial.print("SM");  
+        Serial.print(_id);
+        Serial.print(": duration: ");
+        Serial.println(duration);
+    #else
+        std::cout << "SM" << _id << ": duration: " << duration << std::endl; 
+    #endif
+        _debugLastPrintedDuration = duration;
+    }
+#endif
     StateId nextState = _tranzitionMap.GetNextStateOnDuration(_state, nonIdleDurationMs);
     if (nextState != _state) {
         _ChangeState(nextState, timeMs);
