@@ -1,2 +1,4 @@
 /zaluzie_pc/build/
 /zaluzie_pc/dist/
+*.o
+*.zip

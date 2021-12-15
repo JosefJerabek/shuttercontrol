@@ -1,7 +1,7 @@
-#include "../libraries/shutter_control/shutter_unit.h"
-#include "../libraries/shutter_control/platform_pc.h"
+#include "../libraries/shutter_unit/shutter_unit.h"
+#include "../libraries/shutter_unit/platform_pc.h"
 
-#include "../libraries/shutter_control/global.h"
+#include "../libraries/shutter_unit/global.h"
 
 #define SWITCH_UP_PIN   12
 #define SWITCH_DOWN_PIN 13
@@ -13,8 +13,9 @@
 #define EVENT_PIN_0  1
 #define EVENT_PIN_1  0
 
-
-#define PRESSED_TIMEOUT_MS 1500 // za jak dlouho od stisku udalost PRESSED
+const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRESSED
+const unsigned long PullTimeMs = 60000;  // za jak dlouho sjede / vyjede žaluzie 
+const unsigned long OpenTimeMs =   500;  // potřebný čas na pootevření žaluzie sjeté dolů
 
 
 /// Scénář pro natáčení
@@ -64,7 +65,7 @@ int main() {
     
     PlatformPc * platform = new PlatformPc(pinout, inputSwitching);
         
-    ShutterUnit shutterControl(platform, PRESSED_TIMEOUT_MS);
+    ShutterUnit shutterControl(platform, PressedTimeoutMs, PullTimeMs, OpenTimeMs, 0);
  
     shutterControl.Setup();
     
