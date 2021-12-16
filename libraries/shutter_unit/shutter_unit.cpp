@@ -40,14 +40,15 @@ void ShutterUnit::Setup()
 void ShutterUnit::Loop()
 {
     unsigned long timeMs = _platform->GetTimeMs();
-
     IoState switchIoState = _platform->ReadSwitch();
     EventId eventId = _twinButton.Loop(timeMs, switchIoState);
+    
     if (eventId != EV_NONE) {
         _stateMachine.OnEvent(eventId, timeMs);
     } else {
         _stateMachine.OnTime(timeMs);
     }
+    
     StateId state = _stateMachine.GetState();
 #ifndef ARDUINO // NOTE: state can be printed out also in StateMachine
     printf("time=%06d switch=%s event=%s new_stateid=%s\n", 
