@@ -5,7 +5,6 @@
 // Realize input-output layer - prowide hardware / platform abstraction 
 // * reading switch state
 // * switching power
-// * writing state number
 // * reading time
 // * Input logic: Pouzit PULL_UP rezistor, spinano nulou.
 
@@ -24,12 +23,16 @@ public:
         int PowerDownPin; 
 
         Pinout(
-            int switchUpPin, int switchDownPin, 
-            int powerUpPin, int powerDownPin
+            int switchUpPin,
+            int switchDownPin, 
+            int powerUpPin,
+            int powerDownPin
         ) 
         : 
-        SwitchUpPin(switchUpPin), SwitchDownPin(switchDownPin),
-        PowerUpPin(powerUpPin), PowerDownPin(powerDownPin)
+        SwitchUpPin(switchUpPin), 
+        SwitchDownPin(switchDownPin),
+        PowerUpPin(powerUpPin), 
+        PowerDownPin(powerDownPin)
         {
         };
     };

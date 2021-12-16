@@ -3,15 +3,10 @@
 
 #include "../libraries/shutter_unit/global.h"
 
-#define SWITCH_UP_PIN   12
-#define SWITCH_DOWN_PIN 13
-#define POWER_UP_PIN     8
-#define POWER_DOWN_PIN   9
-#define STATE_PIN_0  4
-#define STATE_PIN_1  3
-#define STATE_PIN_2  2
-#define EVENT_PIN_0  1
-#define EVENT_PIN_1  0
+// #define SWITCH_UP_PIN   12
+// #define SWITCH_DOWN_PIN 13
+// #define POWER_UP_PIN     8
+// #define POWER_DOWN_PIN   9
 
 const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRESSED
 const unsigned long PullTimeMs = 60000;  // za jak dlouho sjede / vyjede žaluzie 

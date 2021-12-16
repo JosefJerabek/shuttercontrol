@@ -4,10 +4,14 @@
 * DONE Přidat stav PULL_DOWN_NEXT_ROT + NEXT_ROT_UP.
 * DONE odladit správné časy
 * TODO Úklidový refaktoring před vydáním
-** update README.md
-** přidat CHANGELOG.md
+** DONE update README.md
+** DONE přidat CHANGELOG.md
 ** zrušit `global.h`
-** platform_if - možná nanic a řešitelné pouze přes #define ARDUINO - prověřit
+** TODO platform_if - možná nanic a řešitelné pouze přes #define ARDUINO - prověřit
+... vrstva simulující uživatelské akce, které by šly simulovat i na
+ arduinu, prakticky to tak je vrstva IO která je v realizacích
+ - sumuluju si data
+ - ctu a zapisuju data uzivatele (arduino piny, počítač klávesy a stdout)
 * TODO nasazení + TAG
 * refaktoring před dalším krokem
 ** state_machine - do jednoho adresáře s tím co potřebuje - stavy
