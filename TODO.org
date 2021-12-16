@@ -6,13 +6,26 @@
 * TODO Úklidový refaktoring před vydáním
 ** DONE update README.md
 ** DONE přidat CHANGELOG.md
-** zrušit `global.h`
+** TODO nasazení + TAG
 ** TODO platform_if - možná nanic a řešitelné pouze přes #define ARDUINO - prověřit
-... vrstva simulující uživatelské akce, které by šly simulovat i na
- arduinu, prakticky to tak je vrstva IO která je v realizacích
- - sumuluju si data
- - ctu a zapisuju data uzivatele (arduino piny, počítač klávesy a stdout)
-* TODO nasazení + TAG
+ >>> celkově se v `platform_if.h` míchají:
+ 1) odstínění se od platformy 
+    - čtení tlačítek, zápis výstupu, čtení času, logování
+    - abych se vyhnul #ifdef ARDUINO v kódu
+    ... přitom ale logování je ještě bokem řešeno přes #ifdef Arduino kde potřeba
+ 2) "ShutterIO" - převod dvojice tlačítek a výstupů na IO_STATE vstupní a IO_STATE výstupní
+ 3) "ShutterIO" - simulace lidské obsluhy
+ >>> potřeba je aby byly vrstvy implementovány správně odděleně nebo vůbec... 
+ >>> vrstvu 3 nechci - nahradím možností pouštět na PC tentýž kód co na Arduino
+ >>> postup úprav:
+  - překlad PC zajistit
+  - funkcionalitu 3) zahodím -> PlatformIf se stane Platform (bez dědění)
+  - vytvořím vrstvu pro odstínění platformy class Platform, statické metody
+     - SetupPin, WritePin, ReadPin, Log(int/char *)
+     - v CPP má #ifdef ARNUINO (to se pak už nikde neobjeví)
+     - navěsím na ni vešteré logování
+  - vytvořím vrstvu UnitIO - vstup a výstup jedné unity stojící nad Platform
+** zrušit `global.h` ... vyplyne z bodu výše
 * refaktoring před dalším krokem
 ** state_machine - do jednoho adresáře s tím co potřebuje - stavy
 ** plnění mapy přechodů - blíže uživateli
