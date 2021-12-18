@@ -55,9 +55,50 @@ CLOSE = DOWN direction
 ```
 
 ## Class diagram
+
 ```plantuml
+class ShutterUnit {
+  Setup()
+  Loop()
+}
+class Button {
+    Button::Event Loop(timeMs, isPushed)
+}
+class TwinButton {
+    EventId Loop(timeMs, IoState ioState)
+}
+class PlatformIf {
+  Setup()
+  IoState ReadSwitch()
+  WritePower(IoState state)
+  GetTimeMs()
+}
+class StateMachine {
+	OnTime(timeMs);
+  OnEvent(EventId eventId, timeMs);
+	StateId GetState();
+}
+class TranzitionMap {
+	SetEventTranzition(stateId, eventId, nextStateId)
+	SetDurationTranzition(stateId, nonIdleDurationMs, nextState)
+	
+	StateId GetNextStateEvent(stateId, eventId)
+	StateId GetNextStateOnDuration(stateId, nonIdleDurationMs)
+}
+
 @startuml
-Deployment *-- ShutterUnit
+ARDUINO.zaluzie_1NP *-- ShutterUnit
+ARDUINO.zaluzie_2NP *-- ShutterUnit
+PC.zaluzie_PC *-- ShutterUnit
+ShutterUnit -- StateMachine
+ShutterUnit -- TranzitionMap
+StateMachine - TranzitionMap
+ShutterUnit -- TwinButton
+TwinButton *-- Button: 2
+ShutterUnit -- PlatformIf
+PlatformIf <-- PlatformArduino
+PlatformIf <-- PlatformPc
+PlatformPc -- InputSwitching
 @enduml
 ```
 
