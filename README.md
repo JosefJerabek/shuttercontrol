@@ -1,6 +1,21 @@
+# Smart shutter control 
 
+## About
 
-# Projekt na automatizované ovládání žaluzií
+Firmware for [Arduino](https://www.arduino.cc/) interconecting switch and shutter using relay board according to scheme
+
+```plantuml
+@startuml
+class Arduino #pink
+class Switch
+class RelayBoard
+Arduino *-- Switch
+Arduino -- RelayBoard
+RelayBoard *-- Shutter
+@endul
+```
+
+The control logic is set by user defined [state machine](https://en.wikipedia.org/wiki/Finite-state_machine) so it can be easily changed.
 
 ## Using on `ubuntu 20.04`
 * install `arduino ide` using `Synaptic`
@@ -10,7 +25,7 @@
   * `Sketch -> Import Library -> Add Library` select `shutter_unit.zip`
 * open `/zaluzie_*np/zaluzie_*np.ino`
 * compile and upload to Arduino Uno
-* for tests use folder `zaluzie_pc`
+* for tests on PC use folder `zaluzie_pc`
 
 
 ## Implemented state diagram
@@ -38,9 +53,19 @@ CLOSE = DOWN direction
 (PULL_DN_OPEN) ..> (IDLE): active_time > 60.5s 
 @enduml
 ```
+
+## Class diagram
+```plantuml
+@startuml
+Deployment *-- ShutterUnit
+@enduml
+```
+
 ## Deployment 
 
-### Zapojení dolní patro
+Deployment examples - authors house.
+
+#### zaluzie_1np (Arduino - zapojení dolní patro)
 
 [arduino uno pins](https://www.arduino.cc/en/Hacking/PinMapping168)
 
@@ -58,7 +83,7 @@ CLOSE = DOWN direction
 * PATICE A0-A5: 23,24,25,26,27,28 
 
 
-### Zapojeni horní patro
+### zaluzie_2np (Arduino - zapojeni horní patro)
 
 * IN_POKOJ_VYCHOD(4) ... UP_VYCHOD, DOWN_VYCHOD, UP_JIH, DOWN_JIH
 * OUT_POKOJ_VYCHOD(4)
@@ -71,3 +96,4 @@ CLOSE = DOWN direction
 * PATICE 8-13 (6) : piny 8-9: IN_KOUPELNA, piny 10-13: OUT_POKOJ_VYCHOD
 * PATICE A0-A5(6) : piny 0-3: OUT_POKOJ_ZAPAD, piny 4-5: OUT_KOUPELNA
 
+### zaluzie_pc (PC)
