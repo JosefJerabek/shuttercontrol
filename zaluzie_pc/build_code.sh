@@ -1,3 +1,5 @@
 g++ -c ../libraries/shutter_unit/*.cpp
-g++ main.cpp -o main
+g++ -c main.cpp
+g++ *.o -o main
+rm *.o
 
