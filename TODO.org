@@ -3,11 +3,14 @@
 * DONE vytáhnout konstaty času jízdy nahoru (ideálně úplně)
 * DONE Přidat stav PULL_DOWN_NEXT_ROT + NEXT_ROT_UP.
 * DONE odladit správné časy
-* TODO Úklidový refaktoring před vydáním
+* DONE Úklidový refaktoring před vydáním
 ** DONE update README.md
 ** DONE přidat CHANGELOG.md
-** TODO nasazení + TAG
-** TODO platform_if - možná nanic a řešitelné pouze přes #define ARDUINO - prověřit
+* TODO nasazení
+** TODO odladění správného zapojení (UP/DOWN)
+** Pracovna - nahoru (zelená), arduino také (zdá se vpořádku)
+* TAG
+* refaktoring před dalším krokem
 ** zrušit `global.h` ... dát přímo include toho co potřeba (většinou to není potřeba)
 ** přepracovat `platform_if`
  >>> celkově se v `platform_if.h` míchají:
