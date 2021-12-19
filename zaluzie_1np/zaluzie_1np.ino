@@ -4,37 +4,37 @@
 
 const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRESSED
 const unsigned long PullTimeMs = 60000;  // za jak dlouho sjede / vyjede žaluzie 
-const unsigned long OpenTimeMs =   500;  // potřebný čas na pootevření žaluzie sjeté dolů
+const unsigned long OpenTimeMs =  1100;  // potřebný čas na pootevření žaluzie sjeté dolů
 
 // Obyvak leve jizni okno
 PlatformIf::Pinout zapojeniObyvakVlevo(
-	BusDigital8Pin::D00, 
 	BusDigital8Pin::D01,
-	BusAnalog::A0, 
-	BusAnalog::A1
+	BusDigital8Pin::D00, 
+	BusAnalog::A1,
+	BusAnalog::A0 
 );
-  
+ 
 // Obyvak prave jizni okno
 PlatformIf::Pinout zapojeniObyvakVpravo(
-	BusDigital8Pin::D02, 
 	BusDigital8Pin::D03,
-	BusAnalog::A2, 
-	BusAnalog::A3
+	BusDigital8Pin::D02, 
+	BusAnalog::A3, 
+	BusAnalog::A2
 );
 
 // Obyvak smer terasa
 PlatformIf::Pinout zapojeniObyvakTerasa(
-	BusDigital8Pin::D04, 
-	BusDigital8Pin::D05,
-	BusAnalog::A4, 
-	BusAnalog::A5
+	BusDigital8Pin::D05, 
+	BusDigital8Pin::D04,
+	BusAnalog::A5, 
+	BusAnalog::A4
 );
 
 PlatformIf::Pinout zapojeniPracovna(
-	BusDigital8Pin::D06, 
-	BusDigital8Pin::D07,
-	BusDigital10Pin::D08,
-	BusDigital10Pin::D09
+	BusDigital8Pin::D07, 
+	BusDigital8Pin::D06,
+	BusDigital10Pin::D09,
+	BusDigital10Pin::D08
 );
 
 PlatformArduino * platformObyvakVlevo = new PlatformArduino(zapojeniObyvakVlevo);
