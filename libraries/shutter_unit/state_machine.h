@@ -5,7 +5,6 @@
 #include "tranzition.h"
 #include "tranzition_map.h"
 
-//#define DEBUG_STATE_MACHINE  // výpis ladících výstupů (Arduino serial, PC consola)
 
 class StateMachine
 {
@@ -34,10 +33,8 @@ private:
     unsigned long _nonIdleSetTimeMs;  // čas přechodu do jiného než IDLE stavu
     TranzitionMap & _tranzitionMap;
 
-#ifdef DEBUG_STATE_MACHINE
     unsigned int _debugLastPrintedTime;
     unsigned int _debugLastPrintedDuration;
-#endif 
 };
 
 #endif

@@ -8,6 +8,7 @@
 ** DONE přidat CHANGELOG.md
 * TODO nasazení
 ** TODO odladění správného zapojení (UP/DOWN)
+** DONE Uvolnění digitálních vstupů 0/1 (trvalé zapnutí ladícího výstupu na sériovku)
 ** Pracovna - nahoru (zelená), arduino také (zdá se vpořádku)
 * TAG
 * refaktoring před dalším krokem

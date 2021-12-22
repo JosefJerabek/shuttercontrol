@@ -1,12 +1,12 @@
 #ifdef ARDUINO
-#include <Arduino.h>
+    #include <Arduino.h>
 #else
-#include <iostream>
+    #include <iostream>
+    #include "event_id.h"  // GetEventName()
 #endif
 
 #include "state_machine.h"
 #include "tranzition_map.h"
-
 
 
 StateMachine::StateMachine(TranzitionMap & tranzitionMap, StateId initialState, unsigned char id) : 
@@ -24,32 +24,32 @@ _nonIdleSetTimeMs(0)
 
 void StateMachine::OnTime(unsigned long timeMs) {
     unsigned long nonIdleDurationMs = _NonIdleDurationMs(timeMs);
-#ifdef DEBUG_STATE_MACHINE
-    unsigned int time = (unsigned int) timeMs / 1000;
-    if (_debugLastPrintedTime != time) {
-    #ifdef ARDUINO
-        Serial.print("SM");  
-        Serial.print(_id);
-        Serial.print(": time: ");
-        Serial.println(time);
-    #else
-        std::cout << "SM" << _id << ": time: " << time << std::endl; 
-    #endif
-        _debugLastPrintedTime = time;
-    }    
-    unsigned int duration = (unsigned int) nonIdleDurationMs / 1000;
-    if (_debugLastPrintedDuration != duration) {
-    #ifdef ARDUINO
-        Serial.print("SM");  
-        Serial.print(_id);
-        Serial.print(": duration: ");
-        Serial.println(duration);
-    #else
-        std::cout << "SM" << _id << ": duration: " << duration << std::endl; 
-    #endif
-        _debugLastPrintedDuration = duration;
-    }
-#endif
+// #ifdef DEBUG_STATE_MACHINE
+//     unsigned int time = (unsigned int) timeMs / 1000;
+//     if (_debugLastPrintedTime != time) {
+//     #ifdef ARDUINO
+//         Serial.print("SM");  
+//         Serial.print(_id);
+//         Serial.print(": time: ");
+//         Serial.println(time);
+//     #else
+//         std::cout << "SM" << _id << ": time: " << time << std::endl; 
+//     #endif
+//         _debugLastPrintedTime = time;
+//     }    
+//     unsigned int duration = (unsigned int) nonIdleDurationMs / 1000;
+//     if (_debugLastPrintedDuration != duration) {
+//     #ifdef ARDUINO
+//         Serial.print("SM");  
+//         Serial.print(_id);
+//         Serial.print(": duration: ");
+//         Serial.println(duration);
+//     #else
+//         std::cout << "SM" << _id << ": duration: " << duration << std::endl; 
+//     #endif
+//         _debugLastPrintedDuration = duration;
+//     }
+// #endif
     StateId nextState = _tranzitionMap.GetNextStateOnDuration(_state, nonIdleDurationMs);
     if (nextState != _state) {
         _ChangeState(nextState, timeMs);
@@ -58,6 +58,16 @@ void StateMachine::OnTime(unsigned long timeMs) {
 
 
 void StateMachine::OnEvent(EventId eventId, unsigned long timeMs) {
+#ifdef DEBUG_STATE_MACHINE
+#ifdef ARDUINO
+        Serial.print("SM");  
+        Serial.print(_id);
+        Serial.print(": event: ");
+        Serial.println(eventId);
+#else
+        std::cout << "SM" << _id << ": event: " << GetEventName(eventId) << std::endl;
+#endif
+#endif
     // zde cely stavovy automat
     if (eventId == EV_NONE) {        
         return;
@@ -94,13 +104,15 @@ void StateMachine::_ChangeState(StateId newState, unsigned long timeMs) {
         if (_state == ST_IDLE && newState != ST_IDLE) {
             _nonIdleSetTimeMs = timeMs;
         }
+#ifdef DEBUG_STATE_MACHINE
 #ifdef ARDUINO
         Serial.print("SM");  
         Serial.print(_id);
-        Serial.print(": ");
+        Serial.print(": state: ");
         Serial.print(_state);
         Serial.print("->");
         Serial.println(newState);
+#endif
 #endif
         _state = newState;
     }

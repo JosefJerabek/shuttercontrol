@@ -6,10 +6,14 @@ const int PressedTimeoutMs = 1200;       // za jak dlouho od stisku udalost PRES
 const unsigned long PullTimeMs = 60000;  // za jak dlouho sjede / vyjede žaluzie 
 const unsigned long OpenTimeMs =   500;  // potřebný čas na pootevření žaluzie sjeté dolů
 
+// zapnuti vypisu stavoveho automatu (Arduino serial port, PC consola)
+#define DEBUG_STATE_MACHINE
+
+
 // Obyvak leve jizni okno
 PlatformIf::Pinout zapojeniObyvakVlevo(
-	BusDigital8Pin::D00, 
-	BusDigital8Pin::D01,
+	BusDigital10Pin::D10, 
+	BusDigital10Pin::D11,
 	BusAnalog::A0, 
 	BusAnalog::A1
 );
@@ -51,8 +55,12 @@ ShutterUnit zaluziePracovna(platformPracovna, PressedTimeoutMs, PullTimeMs, Open
 
 void setup() {
 
-    // POZOR: jen pro debug -> zapisuje do vstupů prvni zaluzie
-    // Serial.begin(9600);  // debug prints inside
+#ifdef DEBUG_STATE_MACHINE
+#ifdef ARDUINO
+    // POZOR: zapisuje do vstupů D00 a D01
+    Serial.begin(9600);  // debug prints inside
+#endif
+#endif
         
   	zaluzieObyvakVlevo.Setup();
 	zaluzieObyvakVpravo.Setup();
