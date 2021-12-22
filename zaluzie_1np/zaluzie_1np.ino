@@ -8,8 +8,8 @@ const unsigned long OpenTimeMs =   500;  // potřebný čas na pootevření žal
 
 // Obyvak leve jizni okno
 PlatformIf::Pinout zapojeniObyvakVlevo(
-	BusDigital8Pin::D00, 
-	BusDigital8Pin::D01,
+	BusDigital10Pin::D10, 
+	BusDigital10Pin::D11,
 	BusAnalog::A0, 
 	BusAnalog::A1
 );
